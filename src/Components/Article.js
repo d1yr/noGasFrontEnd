@@ -62,13 +62,15 @@ class Article extends React.Component {
       <img src={this.props.image1}/>
       <div className="article_content">
         {this.props.content}
+        <br></br>
+        <img src={this.props.image2}/>
         <br></br><ul><br></br>Comments
       
       <li className="article_comment">
         {this.returnsACommentArray()}
       </li></ul><div></div>
       <button onClick={this.toggleHidden3.bind(this)}>Leave Comment</button>{this.state.isHidden3 && <NewComment commentHandler={this.submitCommentHandler} artId={this.props.id}/>}
-      <button onClick={this.handleDelete}>Delete</button>
+      <button onClick={this.handleDelete}>Delete</button><button>Edit Article</button>
       </div>
     </div>
     

@@ -18,23 +18,27 @@
 
 .article_title {
   font-size: 32pt;
+  font-family: aero;
   font-weight: bolder;
 }
 
 .article_author {
   font-style: italic;
+  
 }
 .article {
   background: rgb(0, 0, 0);
   display: flex;
   flex-direction: column;
   color: whitesmoke;
-  box-shadow: 3px 3px 6px 1px rgba(0, 0, 0, 0.36);
+  box-shadow: 30px 30px 6px 1px rgba(0, 0, 0, 0.36);
   border: solid black 1px;
   padding: 5px;
   width: 75%;
   margin: auto;
   border-radius: 20px;
+  font-family: verdana;
+  margin-bottom: 20px;
   
 
 }
@@ -79,10 +83,13 @@ button {
   font-size: calc(100px + 2vmin);
   color: rgb(255, 255, 255);
   font-family: aero;
+  margin-bottom: 20px;
 }
 
 img {
-  width: 500px;
+  margin-top: 20px;
+  width: 700px;
+  margin-bottom: 20px;
 }
 
 .App-link {

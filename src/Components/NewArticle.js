@@ -28,6 +28,7 @@ class NewArticle extends React.Component {
         i += 1
         this.setState({id: i})
         this.props.submitArticleHandler(this.state)
+        
     }
 
     render(){
@@ -46,7 +47,7 @@ class NewArticle extends React.Component {
             <label htmlFor="image2">Add an image:</label>
             <input type='url' name='image2'  value={this.state.image2} onChange={this.changehandler}/>
             <br></br>
-            <input type="submit" value="Submit Your Article!"/>
+            <input type="submit" value="Submit Your Article!" />
 
             
         </form>
