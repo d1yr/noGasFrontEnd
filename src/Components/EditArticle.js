@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
-class NewArticle extends React.Component {
+class EditArticle extends React.Component {
     state={
-        title: "",
-        content:  "",
-        image1: "",
-        image2: "",
+        title: this.props.title,
+        content:  this.props.content,
+        image1: this.props.image1,
+        image2: this.props.image2,
         user_id: 1,
+        id: this.props.article.id
     }
 
 
@@ -22,11 +23,9 @@ class NewArticle extends React.Component {
 
     setId=(e)=>{
         e.preventDefault()
-        let i = this.props.articles
-        i = i.length
-        i += 1
-        this.setState({id: i})
-        this.props.submitArticleHandler(this.state)
+        console.log(this.state)
+
+        this.props.editArticleHandler(this.state)
         
     }
 
@@ -46,7 +45,7 @@ class NewArticle extends React.Component {
             <label htmlFor="image2">Add an image:</label>
             <input type='url' name='image2'  value={this.state.image2} onChange={this.changehandler}/>
             <br></br>
-            <input type="submit" value="Submit Your Article!" />
+            <input type="submit" value="Edit Article!" />
 
             
         </form>
@@ -54,4 +53,4 @@ class NewArticle extends React.Component {
     }
 }
 
-export default NewArticle
+export default EditArticle;

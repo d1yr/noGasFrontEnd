@@ -29,20 +29,28 @@ class ArticlesContainer extends React.Component {
   }
 
   rendArticle(){
-    console.log(this.state)
+    
     const array3 = this.state.articles.filter((obj) => obj.id === this.state.artKey)
-    return array3.map((o) => <Article key={o.id.toString()} id={o.id} title={o.title} image1={o.image1} image2={o.image2} content={o.content} user_id={o.user_id} users={this.state.users} comments={this.state.comments} deleteArticle={this.deleteArticle} isHidden3={this.state.isHidden3} users={this.state.users}/>)
+    return array3.map((o) => <Article key={o.id.toString()} id={o.id} title={o.title} image1={o.image1} image2={o.image2} content={o.content} user_id={o.user_id} users={this.state.users} comments={this.state.comments} deleteArticle={this.deleteArticle} isHidden3={this.state.isHidden3} users={this.state.users} editArticle={this.editArticle}/>)
     
   }
 
   submitArticleHandler=(newArticle, e)=>{
-    console.log(newArticle)
-
-    this.setState({ articles: [newArticle, ...this.state.articles] })
+   
+    fetch('http://localhost:3000/articles',{
+    method: 'POST',
+    headers:{
+      "content-type": "application/json",
+      accepts: "application/json"
+    },
+    body: JSON.stringify(newArticle)})
+    .then(res => res.json())
+    .then(res => {this.setState({articles: [newArticle,...this.state.articles]})})
+    
   }
 
   submitUserHandler=(newUser, e)=>{
-    console.log(newUser)
+    
 
     this.setState({ user: [newUser, ...this.state.users] })
   }
@@ -51,14 +59,25 @@ class ArticlesContainer extends React.Component {
     let copyOfArticles = this.state.articles.filter((j)=>{
       return j.id !== e
     })
-    console.log(copyOfArticles)
+    
     this.setState({
       articles: copyOfArticles
     })
   }
 
+  editArticle=(editA)=>{
+    console.log(editA)
+    let copyOfArticle = this.state.articles.filter((j)=>{
+      return j.id !== editA.id
+    })
+    console.log(copyOfArticle)
+    this.setState({
+      articles: [editA, ...copyOfArticle]
+    })
+  }
+
   nextArticle=(e)=>{
-    console.log(this.state.artKey)
+    
     this.setState({
       artKey: this.state.artKey + 1
     })
@@ -66,7 +85,7 @@ class ArticlesContainer extends React.Component {
   }
 
   prevArticle=(e)=>{
-    console.log(this.state.artKey)
+    
     this.setState({
       artKey: this.state.artKey - 1
     })
@@ -89,15 +108,15 @@ class ArticlesContainer extends React.Component {
 
 
   render(){
-    console.log(this.state)
+    
   return (
     <div>
+      <button onClick={this.prevArticle}>Prev Article</button>
+      
+    <button onClick={this.nextArticle}>Next Article</button>
+    <button onClick={this.toggleHidden1.bind(this)}>New Article</button>{this.state.isHidden1 && <NewArticle submitArticleHandler={this.submitArticleHandler} articles={this.state.articles}/>}
     <div>
     {this.rendArticle()}
-    <button onClick={this.prevArticle}>Prev Article</button>
-    <button onClick={this.nextArticle}>Next Article</button>
-    </div>
-    <div><button onClick={this.toggleHidden1.bind(this)}>New Article</button>{this.state.isHidden1 && <NewArticle submitArticleHandler={this.submitArticleHandler} articles={this.state.articles}/>}
     </div>
     </div>
   )

@@ -16,8 +16,8 @@ class NewComment extends React.Component {
     submitHandler=(e)=>{
         e.preventDefault()
         this.props.commentHandler(this.state)
-        console.log(this.state)
-        //this.props.submitArticleHandler(this.state)
+        
+        
     }
 
 
